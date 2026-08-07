@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cebu Birthday Trip</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  --ocean-deep:#0E4B5A;
+  --ocean-bright:#1C7293;
+  --coral:#FF7A59;
+  --golden:#FFC857;
+  --sand:#FBF3E7;
+  --ink:#1B2A2E;
+  --line:rgba(27,42,46,0.14);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{
+  background:var(--sand);
+  color:var(--ink);
+  font-family:'Work Sans',sans-serif;
+  line-height:1.6;
+  padding:32px 16px 80px;
+}
+
+.page{max-width:720px;margin:0 auto;}
+
+/* ---------- HERO / TICKET ---------- */
+.ticket{
+  background:var(--ocean-deep);
+  color:var(--sand);
+  border-radius:20px;
+  padding:36px 32px 30px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 20px 50px -20px rgba(14,75,90,0.5);
+}
+.ticket::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,0.06) 0, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(255,200,87,0.10) 0, transparent 45%);
+  pointer-events:none;
+}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--golden);
+  opacity:0.9;
+}
+.route{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-top:10px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:15px;
+  color:rgba(251,243,231,0.75);
+}
+.route .plane{color:var(--coral);font-size:13px;}
+h1.title{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:clamp(30px,6vw,42px);
+  line-height:1.15;
+  margin-top:14px;
+  letter-spacing:-0.01em;
+}
+h1.title em{
+  font-style:italic;
+  color:var(--golden);
+  font-weight:400;
+}
+.subline{
+  margin-top:10px;
+  font-size:14.5px;
+  color:rgba(251,243,231,0.8);
+  max-width:420px;
+}
+.dates-row{
+  display:flex;
+  gap:28px;
+  margin-top:26px;
+  padding-top:20px;
+  border-top:1px dashed rgba(251,243,231,0.25);
+  position:relative;
+  z-index:1;
+}
+.date-block .label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:rgba(251,243,231,0.5);
+}
+.date-block .value{
+  font-family:'Fraunces',serif;
+  font-size:19px;
+  margin-top:3px;
+}
+
+/* perforation */
+.perf{
+  height:24px;
+  position:relative;
+  background:var(--sand);
+}
+.perf::before{
+  content:"";
+  position:absolute;
+  top:-12px;left:50%;
+  transform:translateX(-50%);
+  width:calc(100% + 40px);
+  height:24px;
+  background-image:radial-gradient(circle, var(--sand) 6px, transparent 6.5px);
+  background-size:20px 24px;
+  background-position:0 0;
+  background-repeat:repeat-x;
+  filter:none;
+}
+.perf-line{
+  border-top:2px dashed rgba(27,42,46,0.18);
+  margin-top:-24px;
+  padding-top:0;
+}
+
+/* ---------- DAY TABS ---------- */
+.tabs{
+  display:flex;
+  gap:8px;
+  margin:28px 0 0;
+}
+.tab{
+  flex:1;
+  text-align:center;
+  padding:10px 4px;
+  border-radius:12px 12px 0 0;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;
+  letter-spacing:0.04em;
+  background:transparent;
+  border:none;
+  color:rgba(27,42,46,0.45);
+  cursor:pointer;
+  transition:color .2s, background .2s;
+  position:relative;
+  min-width:0;
+}
+.tab .tnum{display:block;font-size:9px;opacity:0.7;margin-bottom:2px;white-space:nowrap;}
+.tab .tname{display:block;font-family:'Fraunces',serif;font-size:13px;font-weight:600;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+@media (min-width:480px){
+  .tab{font-size:12px;padding:12px 6px;}
+  .tab .tnum{font-size:10px;}
+  .tab .tname{font-size:15px;}
+}
+.tab.active{
+  background:#fff;
+  color:var(--ink);
+}
+.tab.active .tnum{color:var(--coral);}
+
+.panel{
+  background:#fff;
+  border-radius:0 0 18px 18px;
+  padding:26px 24px 30px;
+  box-shadow:0 12px 30px -18px rgba(27,42,46,0.25);
+  display:none;
+}
+.panel.active{display:block;animation:fadeIn .35s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){.panel.active{animation:none;}}
+
+.day-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.08em;
+  color:var(--ocean-bright);
+  background:rgba(28,114,147,0.08);
+  padding:5px 10px;
+  border-radius:999px;
+}
+.day-title{
+  font-family:'Fraunces',serif;
+  font-size:24px;
+  font-weight:600;
+  margin-top:10px;
+  margin-bottom:4px;
+}
+.day-desc{
+  font-size:14px;
+  color:rgba(27,42,46,0.65);
+  margin-bottom:22px;
+}
+
+/* timeline */
+.timeline{position:relative;padding-left:2px;}
+.tl-item{
+  display:grid;
+  grid-template-columns:78px 1fr;
+  gap:18px;
+  position:relative;
+  padding-bottom:22px;
+}
+.tl-item:not(:last-child)::before{
+  content:"";
+  position:absolute;
+  left:85px;
+  top:22px;
+  bottom:0;
+  width:1px;
+  background:var(--line);
+}
+.tl-time{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;
+  line-height:1.45;
+  color:var(--ocean-deep);
+  font-weight:500;
+  padding-top:3px;
+  text-align:right;
+  white-space:normal;
+  overflow-wrap:anywhere;
+}
+.tl-dot{
+  position:absolute;
+  left:82px;top:5px;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:var(--coral);
+  box-shadow:0 0 0 3px #fff;
+}
+.tl-content .h{
+  font-weight:600;
+  font-size:15px;
+}
+.tl-content .d{
+  font-size:13.5px;
+  color:rgba(27,42,46,0.62);
+  margin-top:3px;
+}
+.tl-content .tip{
+  margin-top:6px;
+  font-size:12.5px;
+  color:var(--ocean-bright);
+  background:rgba(28,114,147,0.07);
+  padding:6px 10px;
+  border-radius:8px;
+  display:inline-block;
+}
+.tl-content a.link{
+  display:inline-block;
+  margin-top:6px;
+  font-size:12.5px;
+  color:var(--coral);
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,122,89,0.35);
+}
+
+.flight-card{
+  background:var(--ocean-deep);
+  border-radius:14px;
+  padding:18px 20px;
+  color:var(--sand);
+  position:relative;
+  overflow:hidden;
+}
+.flight-card::before{
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 85% 15%, rgba(255,200,87,0.14), transparent 50%);
+  pointer-events:none;
+}
+.fc-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+  z-index:1;
+}
+.fc-city{min-width:90px;}
+.fc-city.right{text-align:right;}
+.fc-code{
+  font-family:'Fraunces',serif;
+  font-size:26px;
+  font-weight:600;
+  letter-spacing:0.02em;
+}
+.fc-name{
+  font-size:11.5px;
+  color:rgba(251,243,231,0.65);
+  margin-top:2px;
+}
+.fc-time{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--golden);
+  margin-top:4px;
+}
+.fc-mid{
+  flex:1;
+  text-align:center;
+  padding:0 14px;
+}
+.fc-flight{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:rgba(251,243,231,0.6);
+  margin-bottom:4px;
+}
+.fc-line{
+  height:1px;
+  background:repeating-linear-gradient(to right, rgba(251,243,231,0.4) 0, rgba(251,243,231,0.4) 4px, transparent 4px, transparent 8px);
+  position:relative;
+}
+.fc-line::after{
+  content:"✈";
+  position:absolute;
+  right:0;top:50%;
+  transform:translate(50%,-50%);
+  font-size:11px;
+  color:var(--coral);
+  background:var(--ocean-deep);
+  padding:0 2px;
+}
+.fc-duration{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;
+  color:rgba(251,243,231,0.5);
+  margin-top:4px;
+}
+
+/* 写真スロット */
+.photo{
+  margin-top:12px;
+  border-radius:12px;
+  overflow:hidden;
+  background:linear-gradient(135deg, rgba(28,114,147,0.13), rgba(255,122,89,0.09));
+  aspect-ratio:16/10;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:5px;
+  border:1px dashed rgba(27,42,46,0.2);
+  color:rgba(27,42,46,0.42);
+  font-size:12px;
+  text-align:center;
+  padding:12px;
+}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo .pico{font-size:24px;opacity:0.45;}
+.photo-cap{
+  font-size:11.5px;
+  color:rgba(27,42,46,0.5);
+  margin-top:6px;
+  font-style:italic;
+}
+
+.photo-duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;}
+.photo-duo .photo{margin-top:0;aspect-ratio:4/3;}
+@media (max-width:420px){.photo-duo{grid-template-columns:1fr;}}
+
+.photo-tall{aspect-ratio:3/4;max-width:260px;}
+
+/* 谷尾メモ */
+.note{
+  margin-top:12px;
+  padding:13px 15px;
+  border-radius:10px;
+  background:rgba(255,200,87,0.15);
+  border-left:3px solid var(--golden);
+  font-size:13px;
+  color:rgba(27,42,46,0.8);
+  line-height:1.7;
+}
+.note .nlabel{
+  display:block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.08em;
+  color:var(--coral);
+  margin-bottom:5px;
+  text-transform:uppercase;
+}
+
+/* 手続きブロック */
+.steps{
+  margin-top:16px;
+  background:rgba(28,114,147,0.06);
+  border-radius:12px;
+  padding:16px 18px;
+  border:1px solid rgba(28,114,147,0.12);
+}
+.steps .stitle{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:14.5px;
+  margin-bottom:9px;
+}
+.steps ol{margin-left:17px;font-size:13px;color:rgba(27,42,46,0.74);}
+.steps ol li{padding:3.5px 0;}
+.steps .snote{
+  font-size:12px;
+  color:rgba(27,42,46,0.55);
+  margin-top:9px;
+  padding-top:9px;
+  border-top:1px dashed var(--line);
+}
+
+/* 見どころリスト */
+.spots{margin-top:14px;}
+.spot{
+  display:flex;
+  gap:11px;
+  padding:9px 0;
+  border-bottom:1px dashed var(--line);
+  font-size:13.5px;
+}
+.spot:last-child{border-bottom:none;}
+.spot .snum{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--coral);
+  padding-top:2px;
+  flex-shrink:0;
+}
+.spot .stxt strong{display:block;font-weight:600;margin-bottom:2px;}
+.spot .stxt span{color:rgba(27,42,46,0.62);font-size:12.5px;}
+
+.highlight-box{
+  margin-top:24px;
+  padding:18px 18px 16px;
+  border-radius:14px;
+  background:linear-gradient(135deg, rgba(255,200,87,0.16), rgba(255,122,89,0.10));
+  border:1px solid rgba(255,122,89,0.18);
+}
+.highlight-box .htitle{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:14px;
+  margin-bottom:6px;
+}
+.highlight-box ul{list-style:none;font-size:13px;color:rgba(27,42,46,0.7);}
+.highlight-box li{padding:3px 0;}
+.highlight-box li::before{content:"✦ ";color:var(--coral);}
+
+/* ---------- PACKING ---------- */
+.section-title{
+  font-family:'Fraunces',serif;
+  font-size:22px;
+  font-weight:600;
+  margin:44px 0 14px;
+}
+.pack-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+@media (max-width:520px){.pack-grid{grid-template-columns:1fr;}}
+.pack-card{
+  background:#fff;
+  border-radius:14px;
+  padding:16px 18px;
+  border:1px solid var(--line);
+}
+.pack-card .pk-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;
+  letter-spacing:0.06em;
+  color:var(--coral);
+  text-transform:uppercase;
+}
+.pack-card ul{
+  list-style:none;
+  margin-top:8px;
+  font-size:13.5px;
+}
+.pack-card li{
+  padding:4px 0;
+  color:rgba(27,42,46,0.75);
+  border-bottom:1px dashed var(--line);
+}
+.pack-card li:last-child{border-bottom:none;}
+
+footer{
+  text-align:center;
+  margin-top:50px;
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  color:rgba(27,42,46,0.5);
+  font-size:14px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="ticket">
+    <div class="eyebrow">Boarding Pass · Birthday Edition</div>
+    <div class="route"><span>NRT</span><span class="plane">✈</span><span>TPE</span><span class="plane">✈</span><span>CEB</span></div>
+    <h1 class="title">3 Days in Cebu,<br><em>for Chi-chan.</em></h1>
+    <p class="subline">ジンベエザメ、滝、絶景ディナー、そして少しの運試し。3日間、思いきり楽しみましょう。</p>
+    <div class="dates-row">
+      <div class="date-block">
+        <div class="label">Depart</div>
+        <div class="value">08 / 08 Sat</div>
+      </div>
+      <div class="date-block">
+        <div class="label">Return</div>
+        <div class="value">08 / 10 Mon</div>
+      </div>
+      <div class="date-block">
+        <div class="label">Guests</div>
+        <div class="value">2</div>
+      </div>
+    </div>
+  </div>
+  <div class="perf"></div>
+
+  <div class="tabs">
+    <button class="tab active" data-day="0"><span class="tnum">TONIGHT</span><span class="tname">出発</span></button>
+    <button class="tab" data-day="1"><span class="tnum">DAY 01</span><span class="tname">到着日</span></button>
+    <button class="tab" data-day="2"><span class="tnum">DAY 02</span><span class="tname">大冒険</span></button>
+    <button class="tab" data-day="3"><span class="tnum">DAY 03</span><span class="tname">Happy Birthday</span></button>
+  </div>
+
+  <!-- DAY 0 : DEPARTURE -->
+  <div class="panel active" id="panel-0">
+    <span class="day-tag">8月7日（金）· Tonight</span>
+    <div class="day-title">さあ、出発。</div>
+    <p class="day-desc">成田から台北を経由してセブへ。少し長い夜になるけれど、それも旅の始まりの醍醐味。</p>
+
+    <div class="flight-card">
+      <div class="fc-row">
+        <div class="fc-city">
+          <div class="fc-code">NRT</div>
+          <div class="fc-name">成田 T3</div>
+          <div class="fc-time">22:40 発</div>
+        </div>
+        <div class="fc-mid">
+          <div class="fc-flight">GK11</div>
+          <div class="fc-line"></div>
+          <div class="fc-duration">3h50m</div>
+        </div>
+        <div class="fc-city right">
+          <div class="fc-code">TPE</div>
+          <div class="fc-name">台北 桃園 T1</div>
+          <div class="fc-time">01:30 着</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline" style="margin-top:22px;">
+      <div class="tl-item">
+        <div class="tl-time">20:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">成田空港 第3ターミナル 集合</div>
+          <div class="d">オンラインチェックイン済みなので、荷物を預けたらすぐ動けます。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">20:15〜21:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">フードコートで腹ごしらえ 🍜</div>
+          <div class="d">第3ターミナルのフードコートは、国内空港で最大級。ただし<strong>ほとんどのお店が21:00ラストオーダー</strong>なので、集合したらまっすぐ向かいましょう。</div>
+          <div class="tip">保安検査を通ったあとはお店がほぼないので、食事は必ず検査の前に</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">22:40</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">GK11 成田 発</div>
+          <div class="d">ジェットスター・ジャパン／エアバスA321neo。ここから約4時間のフライト。</div>
+          <div class="note">
+            <span class="nlabel">谷尾メモ ①</span>
+            実は今回、この日程でセブへの直行便がなかったんだ。そこで、成田→台北と台北→セブのチケットを<strong>別々に取る（別切り）</strong>ことで、この時間で行けるルートを作りました。工夫の跡、見てね。
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">01:30</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">台北 桃園国際空港 T1 到着</div>
+          <div class="d">ここから約6時間半のトランジット。</div>
+          <div class="note">
+            <span class="nlabel">谷尾メモ ②</span>
+            別切りにした関係で、<strong>台北で一度入国して、朝もう一度出国する</strong>必要があります。眠い中で審査に並ぶことになるの、本当にごめんよ…！ そのかわりパスポートに台湾のスタンプが増えるよ。
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">01:35〜02:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">入国審査（台湾に入国）</div>
+          <div class="d">審査を抜けたら、預けた荷物を受け取って到着ロビーへ。ここで一度荷物が手元に戻ります。</div>
+          <div class="tip">審査に並ぶ前に、T1到着階の無料シャワーでさっぱりできます（タオルだけ持参）</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">02:00〜04:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">深夜の台北タイム</div>
+          <div class="d">ここが密かな楽しみポイント。24時間営業のコンビニで<strong>台湾ビールとパイナップルケーキ</strong>を買って、深夜の乾杯をしましょう。到着ロビー近くには電源とWi-Fiが使えるソファエリアもあります。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">04:00〜04:30</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">第2ターミナルへ移動</div>
+          <div class="d">深夜シャトルバスで移動します。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">04:30〜05:30</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">エバー航空チェックイン → 出国審査</div>
+          <div class="d">事前にオンラインチェックインを済ませてあるので、手続きはスムーズ。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">05:30〜07:20</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">ラウンジでひと休み ☕</div>
+          <div class="d">出国審査を抜けた先にあるラウンジへ。24時間営業なので早朝でも入れます。<strong>シャワー・軽食・仮眠</strong>で、セブに向けて体を整えましょう。ここで約2時間ゆっくりできます。</div>
+          <div class="tip">ラウンジに入れるのは出国審査のあと。だから深夜は一般エリアで過ごします</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="stitle">出発前に済ませておく手続き</div>
+      <ol>
+        <li><strong>台湾 Online Arrival Card</strong>（オンライン登録。紙の入国カードは廃止されました）</li>
+        <li><strong>eTravel</strong>（フィリピン入国用。到着72時間前から登録可能）</li>
+        <li><strong>エバー航空 オンラインチェックイン</strong>（出発48時間前から）</li>
+        <li><strong>パスポート</strong>（残存期間6ヶ月以上）</li>
+      </ol>
+      <div class="snote">※ 手続きは谷尾が2人分まとめて対応します。当日はパスポートだけ持ってきてね。</div>
+    </div>
+
+    <div class="flight-card" style="margin-top:22px;">
+      <div class="fc-row">
+        <div class="fc-city">
+          <div class="fc-code">TPE</div>
+          <div class="fc-name">台北 桃園 T2</div>
+          <div class="fc-time">08:00 発</div>
+        </div>
+        <div class="fc-mid">
+          <div class="fc-flight">BR281</div>
+          <div class="fc-line"></div>
+          <div class="fc-duration">2h50m</div>
+        </div>
+        <div class="fc-city right">
+          <div class="fc-code">CEB</div>
+          <div class="fc-name">マクタン・セブ</div>
+          <div class="fc-time">10:50 着</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps" style="background:rgba(28,114,147,0.07);">
+      <div class="stitle">🍜 成田 第3ターミナルのごはん</div>
+      <div class="spots" style="margin-top:6px;">
+        <div class="spot">
+          <div class="snum">◎</div>
+          <div class="stxt"><strong>TATSU SUSHI（寿司）</strong><span>L.O. 22:30と、唯一遅くまでやっています。お酒もあるので、旅の始まりの乾杯にぴったり。迷ったらここ。</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">01</div>
+          <div class="stxt"><strong>宮武讃岐うどん</strong><span>店内で製麺する本格讃岐うどん。L.O. 21:00</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">02</div>
+          <div class="stxt"><strong>長崎ちゃんぽん リンガーハット</strong><span>野菜たっぷりで、夜でも罪悪感なし。L.O. 21:00</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">03</div>
+          <div class="stxt"><strong>フレッシュネスバーガー</strong><span>手作りバーガー。しばらく和食ともお別れなので、逆にアリ。L.O. 21:00</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">04</div>
+          <div class="stxt"><strong>ぼてぢゅう屋台</strong><span>お好み焼き・たこ焼き。L.O. 21:00</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">05</div>
+          <div class="stxt"><strong>ローソン</strong><span>24時間営業。機内で食べるおやつや飲み物の買い出しに。</span></div>
+        </div>
+      </div>
+      <div class="snote">
+        フードコートには出発案内の電光掲示板と<strong>無料の電源</strong>があるので、搭乗まで安心して過ごせます。<br>
+        なお機内食（GK Meal）を予約済みなので、ここは軽めでも大丈夫です。
+      </div>
+    </div>
+
+    <div class="steps" style="background:rgba(255,122,89,0.07);border-color:rgba(255,122,89,0.16);">
+      <div class="stitle">🍽 セブで食べたいローカルフード</div>
+      <div class="spots" style="margin-top:6px;">
+        <div class="spot">
+          <div class="snum">01</div>
+          <div class="stxt"><strong>レチョン（Lechon）</strong><span>豚の丸焼き。セブのものは「フィリピンで一番美味しい」と言われる名物中の名物。皮はパリパリ、中はジューシー。酢＋唐辛子のディップで食べるのがセブ流です。</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">02</div>
+          <div class="stxt"><strong>シシグ（Sisig）</strong><span>刻んだ豚肉を鉄板で提供する、ビールが止まらなくなる一品。</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">03</div>
+          <div class="stxt"><strong>チキンイナサル</strong><span>甘辛いタレに漬け込んだ炭火焼きチキン。屋台の定番。</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">04</div>
+          <div class="stxt"><strong>プソ（Puso）</strong><span>ヤシの葉で編んだ入れ物で炊いたご飯。屋台飯のお供に。</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">05</div>
+          <div class="stxt"><strong>ハロハロ</strong><span>フィリピン版かき氷。練乳と紫芋アイスが乗った南国デザート。</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">06</div>
+          <div class="stxt"><strong>マンゴー</strong><span>そのままでも、シェイクでも。日本の何倍も甘いです。</span></div>
+        </div>
+      </div>
+      <div class="snote">
+        <a class="link" href="https://media.tabicebu.jp/cebu-food-guide/" target="_blank">→ セブ島グルメ食べ歩きガイド</a>
+      </div>
+    </div>
+
+    <div class="steps" style="background:rgba(255,200,87,0.10);border-color:rgba(255,200,87,0.25);">
+      <div class="stitle">🍔 ハンバーガーなら</div>
+      <div class="spots" style="margin-top:6px;">
+        <div class="spot">
+          <div class="snum">◎</div>
+          <div class="stxt"><strong>Jollibee（ジョリビー）</strong><span>フィリピンの国民的ファストフード。看板のYumburgerと、甘めの衣が特徴のChickenjoyは一度は食べておきたい味。赤い蜂のキャラクターが目印です。空港やモールなど、どこにでもあります。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps" style="background:rgba(28,114,147,0.06);">
+      <div class="stitle">🎁 定番のお土産</div>
+      <div class="spots" style="margin-top:6px;">
+        <div class="spot">
+          <div class="snum">01</div>
+          <div class="stxt"><strong>ドライマンゴー</strong><span>セブ土産の定番中の定番。特に「7D」ブランドが人気。スーパーなら50ペソ〜と安く買えます。</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">02</div>
+          <div class="stxt"><strong>オタップ（Otap）</strong><span>実はセブ発祥のパイ菓子。日本のホームパイに近い味で、配る用にぴったり。</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">03</div>
+          <div class="stxt"><strong>バナナチップス</strong><span>ココナッツオイルで揚げた、自然な甘さのサクサク菓子。</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">04</div>
+          <div class="stxt"><strong>手作りギター・ウクレレ</strong><span>実はマクタン島は「フィリピンのギター工房の聖地」。世界のミュージシャンにも愛される品質です。</span></div>
+        </div>
+        <div class="spot">
+          <div class="snum">05</div>
+          <div class="stxt"><strong>マルンガイ（モリンガ）石鹸</strong><span>フィリピンらしい自然派コスメ。軽くてかさばらないのも◎</span></div>
+        </div>
+      </div>
+      <div class="snote">
+        スーパーで買うと空港よりかなり安いです。今回は預け荷物があるので、たっぷり買って帰れます。<br>
+        <a class="link" href="https://csp-cebu.com/navi/cebu_souvenir_17/" target="_blank">→ セブ島お土産25選</a>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="htitle">この夜の見どころ</div>
+      <ul>
+        <li>深夜の台北空港という、非日常な時間</li>
+        <li>2つの国を経由して辿り着く特別感</li>
+        <li>朝日とともにセブへ降り立つ瞬間</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="panel" id="panel-1">
+    <span class="day-tag">8月8日（土）</span>
+    <div class="day-title">まずはゆっくり、島に慣れる日</div>
+    <p class="day-desc">お昼過ぎに到着したら、まずはリゾートでのんびり。夜は屋台街で、現地の空気を味わいます。</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">10:50</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">マクタン・セブ国際空港 着</div>
+          <div class="d">南国の空気を感じながら、まずはひと呼吸。</div>
+          <a class="link" href="https://www.mactancebuairport.com/" target="_blank">→ 空港について</a>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">マクタン島のリゾートホテル チェックイン</div>
+          <div class="d">海沿いに建つ、評価4.6の人気リゾート。まずは荷物を置いて身軽に。</div>
+          <figure class="photo"><img src="img/hotel.jpg" alt="海を望むインフィニティプール"></figure>
+          <div class="photo-cap">海に溶けこむインフィニティプール</div>
+          <div class="spots">
+            <div class="spot">
+              <div class="snum">01</div>
+              <div class="stxt"><strong>インフィニティプール</strong><span>セブの海岸線を一望できる絶景プール。ここが一番の目玉です。</span></div>
+            </div>
+            <div class="spot">
+              <div class="snum">02</div>
+              <div class="stxt"><strong>防水リストバンドのルームキー</strong><span>そのまま海やプールに入れる仕組み。ちょっと嬉しい仕掛け。</span></div>
+            </div>
+            <div class="spot">
+              <div class="snum">03</div>
+              <div class="stxt"><strong>バルコニーからの朝日</strong><span>部屋のバルコニーで見る朝日が評判。最終日の朝が楽しみ。</span></div>
+            </div>
+            <div class="spot">
+              <div class="snum">04</div>
+              <div class="stxt"><strong>ビュッフェ朝食</strong><span>洋食からフィリピン料理まで種類が豊富だと評判です。</span></div>
+            </div>
+            <div class="spot">
+              <div class="snum">05</div>
+              <div class="stxt"><strong>ライフガード付きのビーチ</strong><span>安心して泳げる、きれいに整備されたプライベート感のあるビーチ。</span></div>
+            </div>
+          </div>
+          <div class="photo-cap">※ ホテル名は当日のお楽しみに</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">13:30</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">プール & ビーチでのんびり</div>
+          <div class="d">移動の疲れをここで解消。夕方まで、何もしない贅沢を。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">18:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">サンセットタイム</div>
+          <div class="d">セブの夕暮れは18:15頃。ビーチから眺めるのがおすすめ。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">18:00〜</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">Sugbo Mercado で屋台ディナー</div>
+          <div class="d">数十軒の屋台が並ぶナイトマーケット。ライブバンドも入って賑やかな雰囲気。安くて美味しい現地グルメを気軽に食べ歩き。</div>
+          <figure class="photo"><img src="img/sugbo.jpg" alt="Sugbo Mercadoの賑わい"></figure>
+          <div class="photo-cap">屋台がずらりと並ぶ夜のマーケット</div>
+          <div class="tip">おすすめ：シーフードBBQ／ハロハロ／地元のクラフトビール</div>
+          <a class="link" href="https://www.sugbomercado.com/" target="_blank">→ Sugbo Mercado 公式</a>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">21:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">ホテルへ戻り、早めに就寝</div>
+          <div class="d">翌日は早朝スタート。しっかり休んで備えます。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="htitle">この日の見どころ</div>
+      <ul>
+        <li>島に到着してすぐの、開放感あるビーチタイム</li>
+        <li>地元の人で賑わうナイトマーケットの熱気</li>
+        <li>南国の夕日と、初日の夜風</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="panel" id="panel-2">
+    <span class="day-tag">8月9日（日）</span>
+    <div class="day-title">海、滝、極上マッサージ、そして夜景</div>
+    <p class="day-desc">今回の旅のメインイベント。朝は早いけれど、一日の終わりには最高のご褒美が待っています。</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">03:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">ホテルからピックアップ</div>
+          <div class="d">まだ暗いうちに出発。車内で少し眠っても大丈夫。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">07:00〜</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">オスロブでジンベエザメと一緒に泳ぐ</div>
+          <div class="d">世界最大の魚、ジンベエザメが間近に見られる特別な体験。GoPro・シュノーケル・ライフジャケットは無料でお借りできます。</div>
+          <figure class="photo"><img src="img/whaleshark.jpg" alt="ジンベエザメと泳ぐ"></figure>
+          <div class="photo-cap">こんなに近くを泳いでいきます</div>
+          <div class="spots">
+            <div class="spot">
+              <div class="snum">◎</div>
+              <div class="stxt"><strong>体長は最大10m以上</strong><span>大きな体に白い斑点模様。すぐそばを悠々と泳いでいきます。</span></div>
+            </div>
+            <div class="spot">
+              <div class="snum">◎</div>
+              <div class="stxt"><strong>入水は15〜30分ほど</strong><span>短い時間なので、カメラより「自分の目で見る」のがおすすめ。</span></div>
+            </div>
+          </div>
+          <a class="link" href="http://www.oslobwhalesharks.com/" target="_blank">→ ジンベエザメツアーについて</a>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">10:00〜</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">ツマログ滝</div>
+          <div class="d">カーテンのように広がる、まるで絵画のような滝。ここでもうひと泳ぎ。</div>
+          <figure class="photo"><img src="img/tumalog.jpg" alt="ツマログ滝"></figure>
+          <div class="photo-cap">水のカーテンとエメラルドの滝つぼ</div>
+          <div class="tip">水のカーテンの下に入れる、写真映えする滝です</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">昼</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">リゾートランチ</div>
+          <div class="d">午前の疲れをリセットしながら、ゆっくり食事。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15:00〜</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">Cheeva Spa で全身マッサージ（90分）</div>
+          <div class="d">日本人からの評価も高い、セブで人気の実力派スパ。一日の疲れをここで丁寧に解いていきます。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">20:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">Mott 32 で夜景ディナー</div>
+          <div class="d">セブの街を見下ろすモダン中華レストラン。北京ダックや小籠包など、非日常な一皿を。予約済みです。</div>
+          <figure class="photo photo-tall"><img src="img/mott32.jpg" alt="Mott 32のエントランス"></figure>
+          <div class="photo-cap">この青い看板が目印</div>
+          <a class="link" href="https://mott32.com/locations/cebu" target="_blank">→ Mott 32 公式サイト</a>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">21:30</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">NUSTAR でカジノタイム</div>
+          <div class="d">フィリピン屈指のラグジュアリーカジノ。ちょっとした運試しを。</div>
+          <div class="photo-duo">
+            <figure class="photo"><img src="img/casino_floor.webp" alt="NUSTARのカジノフロア"></figure>
+            <figure class="photo"><img src="img/casino_vip.jpg" alt="NUSTARのVIPルーム"></figure>
+          </div>
+          <div class="photo-cap">シャンデリアが輝く、本格的なカジノフロア</div>
+          <div class="tip">パスポートが必要。きれいめの服装で行きましょう</div>
+          <a class="link" href="https://nustar.ph/" target="_blank">→ NUSTAR 公式サイト</a>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">24:00頃</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">ホテルへ帰着</div>
+          <div class="d">今日はたくさん動いた一日。お疲れさまでした。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="htitle">この日の見どころ</div>
+      <ul>
+        <li>ジンベエザメと泳ぐ、一生忘れられない数十分</li>
+        <li>丁寧な全身マッサージで完全リセット</li>
+        <li>夜景を眺めながらの特別なディナー</li>
+        <li>NUSTARの華やかなカジノフロア</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="panel" id="panel-3">
+    <span class="day-tag">8月10日（月）· Birthday!</span>
+    <div class="day-title">Happy Birthday, Chi-chan.</div>
+    <p class="day-desc">今日という日を、リゾートの朝にゆったりと。旅の最後は、Chi-chanのための時間です。</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">8:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">おはよう、そして誕生日おめでとう</div>
+          <div class="d">特別な朝食の時間。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">9:00〜11:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">最後のプール & ビーチタイム</div>
+          <div class="d">リゾートを味わい尽くす、最後の贅沢な時間。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">チェックアウト</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">13:00〜</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">空港でお土産探し</div>
+          <div class="d">最後にゆっくり、旅の思い出を持って帰りましょう。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15:25</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="h">セブ発 → マニラ乗継 → 羽田へ</div>
+          <div class="d">お疲れさまでした。良い旅になりますように。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="htitle">この日の見どころ</div>
+      <ul>
+        <li>誕生日の朝を、南国のリゾートで</li>
+        <li>最後のビーチタイムをゆっくりと</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title">持ち物リスト</div>
+  <div class="pack-grid">
+    <div class="pack-card">
+      <div class="pk-label">Day 2 バッグに入れるもの</div>
+      <ul>
+        <li>水着（下に着ておくと楽）</li>
+        <li>着替え一式</li>
+        <li>脱げにくいサンダル</li>
+        <li>タオル</li>
+        <li>日焼け止め</li>
+        <li>防水ポーチ</li>
+        <li>きれいめの服（夜のレストラン用）</li>
+      </ul>
+    </div>
+    <div class="pack-card">
+      <div class="pk-label">スーツケースに入れるもの</div>
+      <ul>
+        <li>きれいめの服・靴</li>
+        <li>羽織るもの（機内・車内は冷えます）</li>
+        <li>タオル（台北のシャワー用）</li>
+        <li>洗面用具・充電器</li>
+        <li>お土産用の余白スペース</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note" style="margin-top:14px;">
+    <span class="nlabel">谷尾メモ ③</span>
+    預け荷物を追加したので、<strong>お土産をたっぷり買って帰れます</strong>。ドライマンゴーもオタップも遠慮なくどうぞ。
+  </div>
+
+  <footer>Happy Birthday. Let's make this trip unforgettable. 🌊</footer>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+tab.dataset.day).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
